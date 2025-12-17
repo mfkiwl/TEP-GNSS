@@ -1296,21 +1296,33 @@ def fit_model_with_aic_bic(distances, coherences, weights, model_func, p0, bound
 
 def compute_band_averaged_coherency(x, y, fs, f1=1e-5, f2=5e-4, nperseg=None):
     """
-    Compute band-averaged real coherency between two time series.
+    Compute band-averaged normalized spectral correlation between two time series.
     
-    VALIDATION METHOD: Alternative approach for cross-checking TEP results
-    ====================================================================
-    This method computes coherency (normalized cross-correlation in frequency domain)
-    and extracts only the real part, which corresponds to in-phase correlations.
-    Used to validate the phase-coherent method and ensure consistency.
+    ALTERNATIVE METHOD: Normalized Spectral Correlation
+    ===================================================
+    This method computes the normalized cross-spectral density (coherency) and
+    extracts the real part, which represents the in-phase correlation coefficient
+    at each frequency. Used for validation and cross-checking against the default
+    phase-alignment method.
+    
+    Enable via: TEP_USE_SPECTRAL_CORRELATION=1
     
     Mathematical Background:
     -----------------------
     Coherency γ(f) = S_xy(f) / √[S_xx(f) * S_yy(f)]
     where S_xy is cross-spectral density, S_xx and S_yy are auto-spectral densities.
     
-    Real part: Re[γ(f)] = correlation coefficient at frequency f
-    Imaginary part: Im[γ(f)] = phase relationship (discarded in this method)
+    - Re[γ(f)]: In-phase correlation coefficient at frequency f (what we use)
+    - Im[γ(f)]: Quadrature correlation (phase lead/lag information, discarded here)
+    - |γ(f)|²: Coherence (squared magnitude, commonly used in signal processing)
+    
+    Comparison with Phase-Alignment Method:
+    --------------------------------------
+    - Phase-alignment: cos(magnitude_weighted_phase) — emphasizes phase synchronization
+    - Spectral correlation: Re[normalized_CSD] — emphasizes amplitude-normalized correlation
+    
+    Both should yield consistent results for genuine phase-coherent signals.
+    Significant differences would indicate amplitude carries independent information.
     
     Parameters:
     -----------
@@ -1325,8 +1337,8 @@ def compute_band_averaged_coherency(x, y, fs, f1=1e-5, f2=5e-4, nperseg=None):
         
     Returns:
     --------
-    real_coherency : float
-        Band-averaged real part of coherency (equivalent to frequency-domain correlation)
+    spectral_correlation : float
+        Band-averaged real part of normalized coherency [-1, 1]
     """
     if nperseg is None:
         nperseg = min(256, len(x) // 4)
@@ -1726,16 +1738,17 @@ def compute_cross_power_plateau(series1: np.ndarray, series2: np.ndarray, fs: fl
     series2_detrended = series2 - np.polyval(np.polyfit(time_indices, series2, 1), time_indices)
     
     if use_real_coherency:
-        # ALTERNATIVE METHOD: Band-averaged real coherency
-        # ===============================================
-        # This method uses only the real part of coherency, which is equivalent
-        # to computing correlation in the frequency domain. Used for validation
-        # against traditional correlation methods.
-        real_coherency = compute_band_averaged_coherency(
+        # ALTERNATIVE METHOD: Normalized Spectral Correlation
+        # ===================================================
+        # This method computes the normalized cross-spectral density (coherency)
+        # and extracts the real part, representing in-phase correlation.
+        # Used for validation against the default phase-alignment method.
+        # Enable via: TEP_USE_SPECTRAL_CORRELATION=1 (or legacy TEP_USE_REAL_COHERENCY=1)
+        spectral_correlation = compute_band_averaged_coherency(
             series1_detrended, series2_detrended, fs, f1, f2
         )
-        # Return coherency as "magnitude" and 0 as "phase" for compatibility
-        return float(real_coherency), 0.0
+        # Return spectral correlation as "magnitude" and 0 as "phase" for compatibility
+        return float(spectral_correlation), 0.0
     else:
         # STEP 2: TEP BAND METHOD - Phase-coherent cross-spectral analysis
         # ===================================================================
@@ -2173,15 +2186,60 @@ def process_file_worker(clk_file: Path):
         if len(df_file) == 0:
             return None
             
-        # Add coherence calculation based on method
-        use_real_coherency = os.getenv('TEP_USE_REAL_COHERENCY', '0') == '1'
+        # ========================================================================
+        # COHERENCE METRIC SELECTION
+        # ========================================================================
+        # Two methods are available for deriving the coherence metric from CSD:
+        #
+        # METHOD 1: PHASE-ALIGNMENT INDEX (DEFAULT)
+        # ------------------------------------------
+        # coherence = cos(magnitude_weighted_phase)
+        #
+        # This method uses the representative phase from compute_cross_power_plateau(),
+        # which is a magnitude-weighted circular average of phases across the TEP band.
+        # The cos() transformation maps phase alignment to [-1, 1]:
+        #   - cos(0) = +1: Clocks are in-phase (correlated)
+        #   - cos(π) = -1: Clocks are anti-phase (anti-correlated)
+        #   - Uniform phases → mean(cos) → 0: No correlation
+        #
+        # WHY THIS IS THE DEFAULT FOR TEP ANALYSIS:
+        # 1. TEP theory predicts phase-coherent coupling, not amplitude coupling
+        # 2. GNSS least-squares processing suppresses common-mode amplitudes
+        #    (including classical GM/r² effects) while preserving differential
+        #    phase structure (see §2.1.3.2 in manuscript)
+        # 3. Magnitude information IS used — for weighting the phase average —
+        #    ensuring that strong spectral components dominate the representative phase
+        # 4. This metric directly answers: "Are station clocks phase-synchronized?"
+        #
+        # METHOD 2: NORMALIZED SPECTRAL CORRELATION
+        # -----------------------------------------
+        # coherence = band_averaged(Re[S_xy / sqrt(S_xx * S_yy)])
+        #
+        # This is the normalized cross-spectral density (coherency), averaged
+        # across the TEP band. It's a frequency-domain correlation coefficient.
+        # Enable with: TEP_USE_SPECTRAL_CORRELATION=1
+        #
+        # WHEN TO USE SPECTRAL CORRELATION:
+        # - Validation/comparison studies
+        # - When amplitude information may carry independent signal content
+        # - Cross-checking phase-alignment results
+        #
+        # Both methods produce values in [-1, 1] and should yield consistent
+        # results for genuine phase-coherent signals. Significant differences
+        # would indicate that amplitude carries information not captured by phase.
+        # ========================================================================
         
-        if use_real_coherency:
-            # Band-averaged real coherency method
-            # When using real coherency, plateau_value contains the coherency
+        use_spectral_correlation = os.getenv('TEP_USE_SPECTRAL_CORRELATION', '0') == '1'
+        # Legacy alias for backwards compatibility
+        if os.getenv('TEP_USE_REAL_COHERENCY', '0') == '1':
+            use_spectral_correlation = True
+        
+        if use_spectral_correlation:
+            # Normalized spectral correlation method (alternative)
+            # plateau contains the band-averaged normalized coherency from CSD
             df_file['coherence'] = df_file['plateau']
         else:
-            # Phase-alignment index method (original)
+            # Phase-alignment index method (default, theoretically motivated for TEP)
             df_file['coherence'] = np.cos(df_file['plateau_phase'])
             
         df_file = df_file[df_file['dist_km'] > 0].copy()

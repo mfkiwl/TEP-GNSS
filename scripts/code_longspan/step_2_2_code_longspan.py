@@ -5182,7 +5182,7 @@ def run_jupiter_opposition_analysis(complete_df: pd.DataFrame, event_window_over
         jupiter_oppositions = [
             # 2000-2010
             {'date': pd.Timestamp('2000-11-28'), 'name': 'Jupiter_Opposition_2000'},
-            {'date': pd.Timestamp('2001-12-31'), 'name': 'Jupiter_Opposition_2001'},
+            {'date': pd.Timestamp('2002-01-01'), 'name': 'Jupiter_Opposition_2002'},
             {'date': pd.Timestamp('2003-02-02'), 'name': 'Jupiter_Opposition_2003'},
             {'date': pd.Timestamp('2004-03-04'), 'name': 'Jupiter_Opposition_2004'},
             {'date': pd.Timestamp('2005-04-03'), 'name': 'Jupiter_Opposition_2005'},
@@ -5473,7 +5473,7 @@ def run_mars_opposition_analysis(complete_df: pd.DataFrame, event_window_overrid
             {'name': 'mars_2014', 'date': pd.to_datetime('2014-04-08'), 'description': 'Mars Opposition April 2014'},
             {'name': 'mars_2016', 'date': pd.to_datetime('2016-05-22'), 'description': 'Mars Opposition May 2016'},
             {'name': 'mars_2018', 'date': pd.to_datetime('2018-07-27'), 'description': 'Mars Opposition July 2018'},
-            {'name': 'mars_2020', 'date': pd.to_datetime('2020-10-13'), 'description': 'Mars Opposition October 2020'},
+            {'name': 'mars_2020', 'date': pd.to_datetime('2020-10-14'), 'description': 'Mars Opposition October 2020'},
             {'name': 'mars_2022', 'date': pd.to_datetime('2022-12-08'), 'description': 'Mars Opposition December 2022'},
             {'name': 'mars_2025', 'date': pd.to_datetime('2025-01-16'), 'description': 'Mars Opposition January 2025'}
         ]
@@ -5528,113 +5528,117 @@ def run_mercury_opposition_analysis(complete_df: pd.DataFrame, event_window_over
         complete_df['date'] = pd.to_datetime(complete_df['date'])
         
         # Mercury inferior conjunction events (full coverage 2000-2025)
+        # VERIFIED from JPL DE432s ephemeris - computed 2024-12-06
+        # Source: compute_planetary_events.py using jplephem
         mercury_events = [
-            # 2000
-            {'name': 'mercury_2000_03', 'date': pd.to_datetime('2000-03-28'), 'description': 'Mercury Inferior Conjunction March 2000'},
-            {'name': 'mercury_2000_07', 'date': pd.to_datetime('2000-07-27'), 'description': 'Mercury Inferior Conjunction July 2000'},
-            {'name': 'mercury_2000_11', 'date': pd.to_datetime('2000-11-15'), 'description': 'Mercury Inferior Conjunction November 2000'},
-            # 2001
-            {'name': 'mercury_2001_03', 'date': pd.to_datetime('2001-03-09'), 'description': 'Mercury Inferior Conjunction March 2001'},
-            {'name': 'mercury_2001_07', 'date': pd.to_datetime('2001-07-09'), 'description': 'Mercury Inferior Conjunction July 2001'},
-            {'name': 'mercury_2001_10', 'date': pd.to_datetime('2001-10-29'), 'description': 'Mercury Inferior Conjunction October 2001'},
-            # 2002
-            {'name': 'mercury_2002_02', 'date': pd.to_datetime('2002-02-18'), 'description': 'Mercury Inferior Conjunction February 2002'},
-            {'name': 'mercury_2002_06', 'date': pd.to_datetime('2002-06-21'), 'description': 'Mercury Inferior Conjunction June 2002'},
-            {'name': 'mercury_2002_10', 'date': pd.to_datetime('2002-10-13'), 'description': 'Mercury Inferior Conjunction October 2002'},
-            # 2003
-            {'name': 'mercury_2003_02', 'date': pd.to_datetime('2003-02-04'), 'description': 'Mercury Inferior Conjunction February 2003'},
-            {'name': 'mercury_2003_06', 'date': pd.to_datetime('2003-06-03'), 'description': 'Mercury Inferior Conjunction June 2003'},
-            {'name': 'mercury_2003_09', 'date': pd.to_datetime('2003-09-26'), 'description': 'Mercury Inferior Conjunction September 2003'},
-            # 2004
-            {'name': 'mercury_2004_01', 'date': pd.to_datetime('2004-01-17'), 'description': 'Mercury Inferior Conjunction January 2004'},
-            {'name': 'mercury_2004_05', 'date': pd.to_datetime('2004-05-14'), 'description': 'Mercury Inferior Conjunction May 2004'},
-            {'name': 'mercury_2004_09', 'date': pd.to_datetime('2004-09-09'), 'description': 'Mercury Inferior Conjunction September 2004'},
-            {'name': 'mercury_2004_12', 'date': pd.to_datetime('2004-12-29'), 'description': 'Mercury Inferior Conjunction December 2004'},
-            # 2005
-            {'name': 'mercury_2005_04', 'date': pd.to_datetime('2005-04-26'), 'description': 'Mercury Inferior Conjunction April 2005'},
-            {'name': 'mercury_2005_08', 'date': pd.to_datetime('2005-08-23'), 'description': 'Mercury Inferior Conjunction August 2005'},
-            {'name': 'mercury_2005_12', 'date': pd.to_datetime('2005-12-12'), 'description': 'Mercury Inferior Conjunction December 2005'},
-            # 2006
-            {'name': 'mercury_2006_04', 'date': pd.to_datetime('2006-04-08'), 'description': 'Mercury Inferior Conjunction April 2006'},
-            {'name': 'mercury_2006_08', 'date': pd.to_datetime('2006-08-07'), 'description': 'Mercury Inferior Conjunction August 2006'},
-            {'name': 'mercury_2006_11', 'date': pd.to_datetime('2006-11-24'), 'description': 'Mercury Inferior Conjunction November 2006'},
-            # 2007
-            {'name': 'mercury_2007_03', 'date': pd.to_datetime('2007-03-22'), 'description': 'Mercury Inferior Conjunction March 2007'},
-            {'name': 'mercury_2007_07', 'date': pd.to_datetime('2007-07-20'), 'description': 'Mercury Inferior Conjunction July 2007'},
-            {'name': 'mercury_2007_11', 'date': pd.to_datetime('2007-11-08'), 'description': 'Mercury Inferior Conjunction November 2007'},
-            # 2008
-            {'name': 'mercury_2008_03', 'date': pd.to_datetime('2008-03-03'), 'description': 'Mercury Inferior Conjunction March 2008'},
-            {'name': 'mercury_2008_07', 'date': pd.to_datetime('2008-07-01'), 'description': 'Mercury Inferior Conjunction July 2008'},
-            {'name': 'mercury_2008_10', 'date': pd.to_datetime('2008-10-24'), 'description': 'Mercury Inferior Conjunction October 2008'},
-            # 2009
-            {'name': 'mercury_2009_02', 'date': pd.to_datetime('2009-02-13'), 'description': 'Mercury Inferior Conjunction February 2009'},
-            {'name': 'mercury_2009_06', 'date': pd.to_datetime('2009-06-13'), 'description': 'Mercury Inferior Conjunction June 2009'},
-            {'name': 'mercury_2009_10', 'date': pd.to_datetime('2009-10-06'), 'description': 'Mercury Inferior Conjunction October 2009'},
-            # 2010
-            {'name': 'mercury_2010_01', 'date': pd.to_datetime('2010-01-27'), 'description': 'Mercury Inferior Conjunction January 2010'},
-            {'name': 'mercury_2010_05', 'date': pd.to_datetime('2010-05-26'), 'description': 'Mercury Inferior Conjunction May 2010'},
-            {'name': 'mercury_2010_09', 'date': pd.to_datetime('2010-09-19'), 'description': 'Mercury Inferior Conjunction September 2010'},
-            # 2011
-            {'name': 'mercury_2011_01', 'date': pd.to_datetime('2011-01-09'), 'description': 'Mercury Inferior Conjunction January 2011'},
-            {'name': 'mercury_2011_05', 'date': pd.to_datetime('2011-05-07'), 'description': 'Mercury Inferior Conjunction May 2011'},
-            {'name': 'mercury_2011_09', 'date': pd.to_datetime('2011-09-03'), 'description': 'Mercury Inferior Conjunction September 2011'},
-            {'name': 'mercury_2011_12', 'date': pd.to_datetime('2011-12-23'), 'description': 'Mercury Inferior Conjunction December 2011'},
-            # 2012
-            {'name': 'mercury_2012_04', 'date': pd.to_datetime('2012-04-18'), 'description': 'Mercury Inferior Conjunction April 2012'},
-            {'name': 'mercury_2012_08', 'date': pd.to_datetime('2012-08-16'), 'description': 'Mercury Inferior Conjunction August 2012'},
-            {'name': 'mercury_2012_12', 'date': pd.to_datetime('2012-12-04'), 'description': 'Mercury Inferior Conjunction December 2012'},
-            # 2013
-            {'name': 'mercury_2013_03', 'date': pd.to_datetime('2013-03-31'), 'description': 'Mercury Inferior Conjunction March 2013'},
-            {'name': 'mercury_2013_07', 'date': pd.to_datetime('2013-07-30'), 'description': 'Mercury Inferior Conjunction July 2013'},
-            {'name': 'mercury_2013_11', 'date': pd.to_datetime('2013-11-17'), 'description': 'Mercury Inferior Conjunction November 2013'},
-            # 2014
-            {'name': 'mercury_2014_03', 'date': pd.to_datetime('2014-03-14'), 'description': 'Mercury Inferior Conjunction March 2014'},
-            {'name': 'mercury_2014_07', 'date': pd.to_datetime('2014-07-12'), 'description': 'Mercury Inferior Conjunction July 2014'},
-            {'name': 'mercury_2014_11', 'date': pd.to_datetime('2014-11-01'), 'description': 'Mercury Inferior Conjunction November 2014'},
-            # 2015
-            {'name': 'mercury_2015_02', 'date': pd.to_datetime('2015-02-21'), 'description': 'Mercury Inferior Conjunction February 2015'},
-            {'name': 'mercury_2015_06', 'date': pd.to_datetime('2015-06-24'), 'description': 'Mercury Inferior Conjunction June 2015'},
-            {'name': 'mercury_2015_10', 'date': pd.to_datetime('2015-10-16'), 'description': 'Mercury Inferior Conjunction October 2015'},
-            # 2016
-            {'name': 'mercury_2016_02', 'date': pd.to_datetime('2016-02-07'), 'description': 'Mercury Inferior Conjunction February 2016'},
-            {'name': 'mercury_2016_06', 'date': pd.to_datetime('2016-06-05'), 'description': 'Mercury Inferior Conjunction June 2016'},
-            {'name': 'mercury_2016_09', 'date': pd.to_datetime('2016-09-28'), 'description': 'Mercury Inferior Conjunction September 2016'},
-            # 2017
-            {'name': 'mercury_2017_01', 'date': pd.to_datetime('2017-01-19'), 'description': 'Mercury Inferior Conjunction January 2017'},
-            {'name': 'mercury_2017_05', 'date': pd.to_datetime('2017-05-18'), 'description': 'Mercury Inferior Conjunction May 2017'},
-            {'name': 'mercury_2017_09', 'date': pd.to_datetime('2017-09-12'), 'description': 'Mercury Inferior Conjunction September 2017'},
-            # 2018
-            {'name': 'mercury_2018_01', 'date': pd.to_datetime('2018-01-01'), 'description': 'Mercury Inferior Conjunction January 2018'},
-            {'name': 'mercury_2018_04', 'date': pd.to_datetime('2018-04-30'), 'description': 'Mercury Inferior Conjunction April 2018'},
-            {'name': 'mercury_2018_08', 'date': pd.to_datetime('2018-08-26'), 'description': 'Mercury Inferior Conjunction August 2018'},
-            {'name': 'mercury_2018_12', 'date': pd.to_datetime('2018-12-15'), 'description': 'Mercury Inferior Conjunction December 2018'},
-            # 2019
-            {'name': 'mercury_2019_04', 'date': pd.to_datetime('2019-04-11'), 'description': 'Mercury Inferior Conjunction April 2019'},
-            {'name': 'mercury_2019_08', 'date': pd.to_datetime('2019-08-09'), 'description': 'Mercury Inferior Conjunction August 2019'},
-            {'name': 'mercury_2019_11', 'date': pd.to_datetime('2019-11-28'), 'description': 'Mercury Inferior Conjunction November 2019'},
-            # 2020
-            {'name': 'mercury_2020_03', 'date': pd.to_datetime('2020-03-24'), 'description': 'Mercury Inferior Conjunction March 2020'},
-            {'name': 'mercury_2020_07', 'date': pd.to_datetime('2020-07-22'), 'description': 'Mercury Inferior Conjunction July 2020'},
-            {'name': 'mercury_2020_11', 'date': pd.to_datetime('2020-11-10'), 'description': 'Mercury Inferior Conjunction November 2020'},
-            # 2021
-            {'name': 'mercury_2021_03', 'date': pd.to_datetime('2021-03-06'), 'description': 'Mercury Inferior Conjunction March 2021'},
-            {'name': 'mercury_2021_07', 'date': pd.to_datetime('2021-07-04'), 'description': 'Mercury Inferior Conjunction July 2021'},
-            {'name': 'mercury_2021_10', 'date': pd.to_datetime('2021-10-25'), 'description': 'Mercury Inferior Conjunction October 2021'},
-            # 2022
-            {'name': 'mercury_2022_02', 'date': pd.to_datetime('2022-02-16'), 'description': 'Mercury Inferior Conjunction February 2022'},
-            {'name': 'mercury_2022_06', 'date': pd.to_datetime('2022-06-16'), 'description': 'Mercury Inferior Conjunction June 2022'},
-            {'name': 'mercury_2022_10', 'date': pd.to_datetime('2022-10-08'), 'description': 'Mercury Inferior Conjunction October 2022'},
-            # 2023
-            {'name': 'mercury_2023_01', 'date': pd.to_datetime('2023-01-30'), 'description': 'Mercury Inferior Conjunction January 2023'},
-            {'name': 'mercury_2023_05', 'date': pd.to_datetime('2023-05-29'), 'description': 'Mercury Inferior Conjunction May 2023'},
-            {'name': 'mercury_2023_09', 'date': pd.to_datetime('2023-09-22'), 'description': 'Mercury Inferior Conjunction September 2023'},
-            # 2024
-            {'name': 'mercury_2024_01', 'date': pd.to_datetime('2024-01-12'), 'description': 'Mercury Inferior Conjunction January 2024'},
-            {'name': 'mercury_2024_05', 'date': pd.to_datetime('2024-05-09'), 'description': 'Mercury Inferior Conjunction May 2024'},
-            {'name': 'mercury_2024_09', 'date': pd.to_datetime('2024-09-05'), 'description': 'Mercury Inferior Conjunction September 2024'},
-            {'name': 'mercury_2024_12', 'date': pd.to_datetime('2024-12-25'), 'description': 'Mercury Inferior Conjunction December 2024'},
-            # 2025
-            {'name': 'mercury_2025_04', 'date': pd.to_datetime('2025-04-21'), 'description': 'Mercury Inferior Conjunction April 2025'}
+            # 2000 (3 events)
+            {'name': 'mercury_2000_03', 'date': pd.to_datetime('2000-03-01'), 'description': 'Mercury Inferior Conjunction March 2000'},
+            {'name': 'mercury_2000_07', 'date': pd.to_datetime('2000-07-06'), 'description': 'Mercury Inferior Conjunction July 2000'},
+            {'name': 'mercury_2000_10', 'date': pd.to_datetime('2000-10-30'), 'description': 'Mercury Inferior Conjunction October 2000'},
+            # 2001 (3 events)
+            {'name': 'mercury_2001_02', 'date': pd.to_datetime('2001-02-12'), 'description': 'Mercury Inferior Conjunction February 2001'},
+            {'name': 'mercury_2001_06', 'date': pd.to_datetime('2001-06-16'), 'description': 'Mercury Inferior Conjunction June 2001'},
+            {'name': 'mercury_2001_10', 'date': pd.to_datetime('2001-10-14'), 'description': 'Mercury Inferior Conjunction October 2001'},
+            # 2002 (3 events)
+            {'name': 'mercury_2002_01', 'date': pd.to_datetime('2002-01-27'), 'description': 'Mercury Inferior Conjunction January 2002'},
+            {'name': 'mercury_2002_05', 'date': pd.to_datetime('2002-05-27'), 'description': 'Mercury Inferior Conjunction May 2002'},
+            {'name': 'mercury_2002_09', 'date': pd.to_datetime('2002-09-27'), 'description': 'Mercury Inferior Conjunction September 2002'},
+            # 2003 (4 events)
+            {'name': 'mercury_2003_01', 'date': pd.to_datetime('2003-01-11'), 'description': 'Mercury Inferior Conjunction January 2003'},
+            {'name': 'mercury_2003_05', 'date': pd.to_datetime('2003-05-07'), 'description': 'Mercury Inferior Conjunction May 2003'},
+            {'name': 'mercury_2003_09', 'date': pd.to_datetime('2003-09-11'), 'description': 'Mercury Inferior Conjunction September 2003'},
+            {'name': 'mercury_2003_12', 'date': pd.to_datetime('2003-12-26'), 'description': 'Mercury Inferior Conjunction December 2003'},
+            # 2004 (3 events)
+            {'name': 'mercury_2004_04', 'date': pd.to_datetime('2004-04-17'), 'description': 'Mercury Inferior Conjunction April 2004'},
+            {'name': 'mercury_2004_08', 'date': pd.to_datetime('2004-08-24'), 'description': 'Mercury Inferior Conjunction August 2004'},
+            {'name': 'mercury_2004_12', 'date': pd.to_datetime('2004-12-10'), 'description': 'Mercury Inferior Conjunction December 2004'},
+            # 2005 (3 events)
+            {'name': 'mercury_2005_03', 'date': pd.to_datetime('2005-03-29'), 'description': 'Mercury Inferior Conjunction March 2005'},
+            {'name': 'mercury_2005_08', 'date': pd.to_datetime('2005-08-06'), 'description': 'Mercury Inferior Conjunction August 2005'},
+            {'name': 'mercury_2005_11', 'date': pd.to_datetime('2005-11-24'), 'description': 'Mercury Inferior Conjunction November 2005'},
+            # 2006 (3 events)
+            {'name': 'mercury_2006_03', 'date': pd.to_datetime('2006-03-12'), 'description': 'Mercury Inferior Conjunction March 2006'},
+            {'name': 'mercury_2006_07', 'date': pd.to_datetime('2006-07-18'), 'description': 'Mercury Inferior Conjunction July 2006'},
+            {'name': 'mercury_2006_11', 'date': pd.to_datetime('2006-11-08'), 'description': 'Mercury Inferior Conjunction November 2006'},
+            # 2007 (3 events)
+            {'name': 'mercury_2007_02', 'date': pd.to_datetime('2007-02-23'), 'description': 'Mercury Inferior Conjunction February 2007'},
+            {'name': 'mercury_2007_06', 'date': pd.to_datetime('2007-06-28'), 'description': 'Mercury Inferior Conjunction June 2007'},
+            {'name': 'mercury_2007_10', 'date': pd.to_datetime('2007-10-24'), 'description': 'Mercury Inferior Conjunction October 2007'},
+            # 2008 (3 events)
+            {'name': 'mercury_2008_02', 'date': pd.to_datetime('2008-02-06'), 'description': 'Mercury Inferior Conjunction February 2008'},
+            {'name': 'mercury_2008_06', 'date': pd.to_datetime('2008-06-07'), 'description': 'Mercury Inferior Conjunction June 2008'},
+            {'name': 'mercury_2008_10', 'date': pd.to_datetime('2008-10-07'), 'description': 'Mercury Inferior Conjunction October 2008'},
+            # 2009 (3 events)
+            {'name': 'mercury_2009_01', 'date': pd.to_datetime('2009-01-20'), 'description': 'Mercury Inferior Conjunction January 2009'},
+            {'name': 'mercury_2009_05', 'date': pd.to_datetime('2009-05-18'), 'description': 'Mercury Inferior Conjunction May 2009'},
+            {'name': 'mercury_2009_09', 'date': pd.to_datetime('2009-09-20'), 'description': 'Mercury Inferior Conjunction September 2009'},
+            # 2010 (4 events)
+            {'name': 'mercury_2010_01', 'date': pd.to_datetime('2010-01-04'), 'description': 'Mercury Inferior Conjunction January 2010'},
+            {'name': 'mercury_2010_04', 'date': pd.to_datetime('2010-04-28'), 'description': 'Mercury Inferior Conjunction April 2010'},
+            {'name': 'mercury_2010_09', 'date': pd.to_datetime('2010-09-03'), 'description': 'Mercury Inferior Conjunction September 2010'},
+            {'name': 'mercury_2010_12', 'date': pd.to_datetime('2010-12-19'), 'description': 'Mercury Inferior Conjunction December 2010'},
+            # 2011 (3 events)
+            {'name': 'mercury_2011_04', 'date': pd.to_datetime('2011-04-09'), 'description': 'Mercury Inferior Conjunction April 2011'},
+            {'name': 'mercury_2011_08', 'date': pd.to_datetime('2011-08-17'), 'description': 'Mercury Inferior Conjunction August 2011'},
+            {'name': 'mercury_2011_12', 'date': pd.to_datetime('2011-12-04'), 'description': 'Mercury Inferior Conjunction December 2011'},
+            # 2012 (3 events)
+            {'name': 'mercury_2012_03', 'date': pd.to_datetime('2012-03-21'), 'description': 'Mercury Inferior Conjunction March 2012'},
+            {'name': 'mercury_2012_07', 'date': pd.to_datetime('2012-07-28'), 'description': 'Mercury Inferior Conjunction July 2012'},
+            {'name': 'mercury_2012_11', 'date': pd.to_datetime('2012-11-17'), 'description': 'Mercury Inferior Conjunction November 2012'},
+            # 2013 (3 events)
+            {'name': 'mercury_2013_03', 'date': pd.to_datetime('2013-03-04'), 'description': 'Mercury Inferior Conjunction March 2013'},
+            {'name': 'mercury_2013_07', 'date': pd.to_datetime('2013-07-09'), 'description': 'Mercury Inferior Conjunction July 2013'},
+            {'name': 'mercury_2013_11', 'date': pd.to_datetime('2013-11-01'), 'description': 'Mercury Inferior Conjunction November 2013'},
+            # 2014 (3 events)
+            {'name': 'mercury_2014_02', 'date': pd.to_datetime('2014-02-15'), 'description': 'Mercury Inferior Conjunction February 2014'},
+            {'name': 'mercury_2014_06', 'date': pd.to_datetime('2014-06-19'), 'description': 'Mercury Inferior Conjunction June 2014'},
+            {'name': 'mercury_2014_10', 'date': pd.to_datetime('2014-10-16'), 'description': 'Mercury Inferior Conjunction October 2014'},
+            # 2015 (3 events)
+            {'name': 'mercury_2015_01', 'date': pd.to_datetime('2015-01-30'), 'description': 'Mercury Inferior Conjunction January 2015'},
+            {'name': 'mercury_2015_05', 'date': pd.to_datetime('2015-05-30'), 'description': 'Mercury Inferior Conjunction May 2015'},
+            {'name': 'mercury_2015_09', 'date': pd.to_datetime('2015-09-30'), 'description': 'Mercury Inferior Conjunction September 2015'},
+            # 2016 (4 events)
+            {'name': 'mercury_2016_01', 'date': pd.to_datetime('2016-01-14'), 'description': 'Mercury Inferior Conjunction January 2016'},
+            {'name': 'mercury_2016_05', 'date': pd.to_datetime('2016-05-09'), 'description': 'Mercury Inferior Conjunction May 2016'},
+            {'name': 'mercury_2016_09', 'date': pd.to_datetime('2016-09-13'), 'description': 'Mercury Inferior Conjunction September 2016'},
+            {'name': 'mercury_2016_12', 'date': pd.to_datetime('2016-12-28'), 'description': 'Mercury Inferior Conjunction December 2016'},
+            # 2017 (3 events)
+            {'name': 'mercury_2017_04', 'date': pd.to_datetime('2017-04-20'), 'description': 'Mercury Inferior Conjunction April 2017'},
+            {'name': 'mercury_2017_08', 'date': pd.to_datetime('2017-08-27'), 'description': 'Mercury Inferior Conjunction August 2017'},
+            {'name': 'mercury_2017_12', 'date': pd.to_datetime('2017-12-12'), 'description': 'Mercury Inferior Conjunction December 2017'},
+            # 2018 (3 events)
+            {'name': 'mercury_2018_04', 'date': pd.to_datetime('2018-04-01'), 'description': 'Mercury Inferior Conjunction April 2018'},
+            {'name': 'mercury_2018_08', 'date': pd.to_datetime('2018-08-09'), 'description': 'Mercury Inferior Conjunction August 2018'},
+            {'name': 'mercury_2018_11', 'date': pd.to_datetime('2018-11-27'), 'description': 'Mercury Inferior Conjunction November 2018'},
+            # 2019 (3 events)
+            {'name': 'mercury_2019_03', 'date': pd.to_datetime('2019-03-15'), 'description': 'Mercury Inferior Conjunction March 2019'},
+            {'name': 'mercury_2019_07', 'date': pd.to_datetime('2019-07-21'), 'description': 'Mercury Inferior Conjunction July 2019'},
+            {'name': 'mercury_2019_11', 'date': pd.to_datetime('2019-11-11'), 'description': 'Mercury Inferior Conjunction November 2019'},
+            # 2020 (3 events)
+            {'name': 'mercury_2020_02', 'date': pd.to_datetime('2020-02-26'), 'description': 'Mercury Inferior Conjunction February 2020'},
+            {'name': 'mercury_2020_06', 'date': pd.to_datetime('2020-06-30'), 'description': 'Mercury Inferior Conjunction June 2020'},
+            {'name': 'mercury_2020_10', 'date': pd.to_datetime('2020-10-25'), 'description': 'Mercury Inferior Conjunction October 2020'},
+            # 2021 (3 events)
+            {'name': 'mercury_2021_02', 'date': pd.to_datetime('2021-02-08'), 'description': 'Mercury Inferior Conjunction February 2021'},
+            {'name': 'mercury_2021_06', 'date': pd.to_datetime('2021-06-10'), 'description': 'Mercury Inferior Conjunction June 2021'},
+            {'name': 'mercury_2021_10', 'date': pd.to_datetime('2021-10-09'), 'description': 'Mercury Inferior Conjunction October 2021'},
+            # 2022 (3 events)
+            {'name': 'mercury_2022_01', 'date': pd.to_datetime('2022-01-23'), 'description': 'Mercury Inferior Conjunction January 2022'},
+            {'name': 'mercury_2022_05', 'date': pd.to_datetime('2022-05-21'), 'description': 'Mercury Inferior Conjunction May 2022'},
+            {'name': 'mercury_2022_09', 'date': pd.to_datetime('2022-09-23'), 'description': 'Mercury Inferior Conjunction September 2022'},
+            # 2023 (4 events)
+            {'name': 'mercury_2023_01', 'date': pd.to_datetime('2023-01-07'), 'description': 'Mercury Inferior Conjunction January 2023'},
+            {'name': 'mercury_2023_05', 'date': pd.to_datetime('2023-05-02'), 'description': 'Mercury Inferior Conjunction May 2023'},
+            {'name': 'mercury_2023_09', 'date': pd.to_datetime('2023-09-06'), 'description': 'Mercury Inferior Conjunction September 2023'},
+            {'name': 'mercury_2023_12', 'date': pd.to_datetime('2023-12-22'), 'description': 'Mercury Inferior Conjunction December 2023'},
+            # 2024 (3 events)
+            {'name': 'mercury_2024_04', 'date': pd.to_datetime('2024-04-12'), 'description': 'Mercury Inferior Conjunction April 2024'},
+            {'name': 'mercury_2024_08', 'date': pd.to_datetime('2024-08-19'), 'description': 'Mercury Inferior Conjunction August 2024'},
+            {'name': 'mercury_2024_12', 'date': pd.to_datetime('2024-12-06'), 'description': 'Mercury Inferior Conjunction December 2024'},
+            # 2025 (3 events)
+            {'name': 'mercury_2025_03', 'date': pd.to_datetime('2025-03-24'), 'description': 'Mercury Inferior Conjunction March 2025'},
+            {'name': 'mercury_2025_08', 'date': pd.to_datetime('2025-08-01'), 'description': 'Mercury Inferior Conjunction August 2025'},
+            {'name': 'mercury_2025_11', 'date': pd.to_datetime('2025-11-20'), 'description': 'Mercury Inferior Conjunction November 2025'},
         ]
         
         # Use multi-window analysis helper
@@ -5698,28 +5702,28 @@ def run_venus_opposition_analysis(complete_df: pd.DataFrame, event_window_overri
         complete_df['date'] = pd.to_datetime(complete_df['date'])
         
         # Venus inferior conjunctions (closest approach, between Earth and Sun)
-        # Source: Shadetree Physics astronomical ephemeris calculations
-        # URL: http://www.shadetreephysics.com/vel/1918ics.htm
+        # VERIFIED from JPL DE432s ephemeris - computed 2024-12-06
+        # Source: compute_planetary_events.py using jplephem
         # Venus synodic period: ~584 days (~19 months)
-        # Complete 2000-2025 coverage: 16 events (VERIFIED)
+        # Complete 2001-2025 coverage: 16 events (no Venus inf. conj. in 2000)
         venus_events = [
             # 2001-2010
             {'name': 'venus_2001', 'date': pd.to_datetime('2001-03-30'), 'description': 'Venus Inferior Conjunction March 2001'},
             {'name': 'venus_2002', 'date': pd.to_datetime('2002-10-31'), 'description': 'Venus Inferior Conjunction October 2002'},
             {'name': 'venus_2004', 'date': pd.to_datetime('2004-06-08'), 'description': 'Venus Inferior Conjunction June 2004 (TRANSIT)'},
-            {'name': 'venus_2006', 'date': pd.to_datetime('2006-01-15'), 'description': 'Venus Inferior Conjunction January 2006'},
-            {'name': 'venus_2007', 'date': pd.to_datetime('2007-08-18'), 'description': 'Venus Inferior Conjunction August 2007'},
-            {'name': 'venus_2009', 'date': pd.to_datetime('2009-03-29'), 'description': 'Venus Inferior Conjunction March 2009'},
+            {'name': 'venus_2006', 'date': pd.to_datetime('2006-01-13'), 'description': 'Venus Inferior Conjunction January 2006'},
+            {'name': 'venus_2007', 'date': pd.to_datetime('2007-08-17'), 'description': 'Venus Inferior Conjunction August 2007'},
+            {'name': 'venus_2009', 'date': pd.to_datetime('2009-03-28'), 'description': 'Venus Inferior Conjunction March 2009'},
             {'name': 'venus_2010', 'date': pd.to_datetime('2010-10-29'), 'description': 'Venus Inferior Conjunction October 2010'},
             # 2011-2020
             {'name': 'venus_2012', 'date': pd.to_datetime('2012-06-06'), 'description': 'Venus Inferior Conjunction June 2012 (TRANSIT)'},
             {'name': 'venus_2014', 'date': pd.to_datetime('2014-01-11'), 'description': 'Venus Inferior Conjunction January 2014'},
             {'name': 'venus_2015', 'date': pd.to_datetime('2015-08-15'), 'description': 'Venus Inferior Conjunction August 2015'},
             {'name': 'venus_2017', 'date': pd.to_datetime('2017-03-25'), 'description': 'Venus Inferior Conjunction March 2017'},
-            {'name': 'venus_2018', 'date': pd.to_datetime('2018-10-26'), 'description': 'Venus Inferior Conjunction October 2018'},
+            {'name': 'venus_2018', 'date': pd.to_datetime('2018-10-27'), 'description': 'Venus Inferior Conjunction October 2018'},
             {'name': 'venus_2020', 'date': pd.to_datetime('2020-06-03'), 'description': 'Venus Inferior Conjunction June 2020'},
             # 2021-2025
-            {'name': 'venus_2022', 'date': pd.to_datetime('2022-01-09'), 'description': 'Venus Inferior Conjunction January 2022'},
+            {'name': 'venus_2022', 'date': pd.to_datetime('2022-01-08'), 'description': 'Venus Inferior Conjunction January 2022'},
             {'name': 'venus_2023', 'date': pd.to_datetime('2023-08-13'), 'description': 'Venus Inferior Conjunction August 2023'},
             {'name': 'venus_2025', 'date': pd.to_datetime('2025-03-23'), 'description': 'Venus Inferior Conjunction March 2025'}
         ]
@@ -6051,110 +6055,6 @@ def run_solar_rotation_analysis(complete_df: pd.DataFrame) -> Dict:
 def run_lunar_standstill_analysis(complete_df: pd.DataFrame) -> Dict:
     """
     Analyze GPS timing correlations around major lunar standstill events.
-            {'name': 'mercury_2000_11', 'date': pd.to_datetime('2000-11-15'), 'description': 'Mercury Inferior Conjunction November 2000'},
-            # 2001
-            {'name': 'mercury_2001_03', 'date': pd.to_datetime('2001-03-09'), 'description': 'Mercury Inferior Conjunction March 2001'},
-            {'name': 'mercury_2001_07', 'date': pd.to_datetime('2001-07-09'), 'description': 'Mercury Inferior Conjunction July 2001'},
-            {'name': 'mercury_2001_10', 'date': pd.to_datetime('2001-10-29'), 'description': 'Mercury Inferior Conjunction October 2001'},
-            # 2002
-            {'name': 'mercury_2002_02', 'date': pd.to_datetime('2002-02-18'), 'description': 'Mercury Inferior Conjunction February 2002'},
-            {'name': 'mercury_2002_06', 'date': pd.to_datetime('2002-06-21'), 'description': 'Mercury Inferior Conjunction June 2002'},
-            {'name': 'mercury_2002_10', 'date': pd.to_datetime('2002-10-13'), 'description': 'Mercury Inferior Conjunction October 2002'},
-            # 2003
-            {'name': 'mercury_2003_02', 'date': pd.to_datetime('2003-02-04'), 'description': 'Mercury Inferior Conjunction February 2003'},
-            {'name': 'mercury_2003_06', 'date': pd.to_datetime('2003-06-03'), 'description': 'Mercury Inferior Conjunction June 2003'},
-            {'name': 'mercury_2003_09', 'date': pd.to_datetime('2003-09-26'), 'description': 'Mercury Inferior Conjunction September 2003'},
-            # 2004
-            {'name': 'mercury_2004_01', 'date': pd.to_datetime('2004-01-17'), 'description': 'Mercury Inferior Conjunction January 2004'},
-            {'name': 'mercury_2004_05', 'date': pd.to_datetime('2004-05-14'), 'description': 'Mercury Inferior Conjunction May 2004'},
-            {'name': 'mercury_2004_09', 'date': pd.to_datetime('2004-09-09'), 'description': 'Mercury Inferior Conjunction September 2004'},
-            {'name': 'mercury_2004_12', 'date': pd.to_datetime('2004-12-29'), 'description': 'Mercury Inferior Conjunction December 2004'},
-            # 2005
-            {'name': 'mercury_2005_04', 'date': pd.to_datetime('2005-04-26'), 'description': 'Mercury Inferior Conjunction April 2005'},
-            {'name': 'mercury_2005_08', 'date': pd.to_datetime('2005-08-23'), 'description': 'Mercury Inferior Conjunction August 2005'},
-            {'name': 'mercury_2005_12', 'date': pd.to_datetime('2005-12-12'), 'description': 'Mercury Inferior Conjunction December 2005'},
-            # 2006
-            {'name': 'mercury_2006_04', 'date': pd.to_datetime('2006-04-08'), 'description': 'Mercury Inferior Conjunction April 2006'},
-            {'name': 'mercury_2006_08', 'date': pd.to_datetime('2006-08-07'), 'description': 'Mercury Inferior Conjunction August 2006'},
-            {'name': 'mercury_2006_11', 'date': pd.to_datetime('2006-11-24'), 'description': 'Mercury Inferior Conjunction November 2006'},
-            # 2007
-            {'name': 'mercury_2007_03', 'date': pd.to_datetime('2007-03-22'), 'description': 'Mercury Inferior Conjunction March 2007'},
-            {'name': 'mercury_2007_07', 'date': pd.to_datetime('2007-07-20'), 'description': 'Mercury Inferior Conjunction July 2007'},
-            {'name': 'mercury_2007_11', 'date': pd.to_datetime('2007-11-08'), 'description': 'Mercury Inferior Conjunction November 2007'},
-            # 2008
-            {'name': 'mercury_2008_03', 'date': pd.to_datetime('2008-03-03'), 'description': 'Mercury Inferior Conjunction March 2008'},
-            {'name': 'mercury_2008_07', 'date': pd.to_datetime('2008-07-01'), 'description': 'Mercury Inferior Conjunction July 2008'},
-            {'name': 'mercury_2008_10', 'date': pd.to_datetime('2008-10-24'), 'description': 'Mercury Inferior Conjunction October 2008'},
-            # 2009
-            {'name': 'mercury_2009_02', 'date': pd.to_datetime('2009-02-13'), 'description': 'Mercury Inferior Conjunction February 2009'},
-            {'name': 'mercury_2009_06', 'date': pd.to_datetime('2009-06-13'), 'description': 'Mercury Inferior Conjunction June 2009'},
-            {'name': 'mercury_2009_10', 'date': pd.to_datetime('2009-10-06'), 'description': 'Mercury Inferior Conjunction October 2009'},
-            # 2010
-            {'name': 'mercury_2010_01', 'date': pd.to_datetime('2010-01-27'), 'description': 'Mercury Inferior Conjunction January 2010'},
-            {'name': 'mercury_2010_05', 'date': pd.to_datetime('2010-05-26'), 'description': 'Mercury Inferior Conjunction May 2010'},
-            {'name': 'mercury_2010_09', 'date': pd.to_datetime('2010-09-19'), 'description': 'Mercury Inferior Conjunction September 2010'},
-            # 2011
-            {'name': 'mercury_2011_01', 'date': pd.to_datetime('2011-01-09'), 'description': 'Mercury Inferior Conjunction January 2011'},
-            {'name': 'mercury_2011_05', 'date': pd.to_datetime('2011-05-07'), 'description': 'Mercury Inferior Conjunction May 2011'},
-            {'name': 'mercury_2011_09', 'date': pd.to_datetime('2011-09-03'), 'description': 'Mercury Inferior Conjunction September 2011'},
-            {'name': 'mercury_2011_12', 'date': pd.to_datetime('2011-12-23'), 'description': 'Mercury Inferior Conjunction December 2011'},
-            # 2012
-            {'name': 'mercury_2012_04', 'date': pd.to_datetime('2012-04-18'), 'description': 'Mercury Inferior Conjunction April 2012'},
-            {'name': 'mercury_2012_08', 'date': pd.to_datetime('2012-08-16'), 'description': 'Mercury Inferior Conjunction August 2012'},
-            {'name': 'mercury_2012_12', 'date': pd.to_datetime('2012-12-04'), 'description': 'Mercury Inferior Conjunction December 2012'},
-            # 2013
-            {'name': 'mercury_2013_03', 'date': pd.to_datetime('2013-03-31'), 'description': 'Mercury Inferior Conjunction March 2013'},
-            {'name': 'mercury_2013_07', 'date': pd.to_datetime('2013-07-30'), 'description': 'Mercury Inferior Conjunction July 2013'},
-            {'name': 'mercury_2013_11', 'date': pd.to_datetime('2013-11-17'), 'description': 'Mercury Inferior Conjunction November 2013'},
-            # 2014
-            {'name': 'mercury_2014_03', 'date': pd.to_datetime('2014-03-14'), 'description': 'Mercury Inferior Conjunction March 2014'},
-            {'name': 'mercury_2014_07', 'date': pd.to_datetime('2014-07-12'), 'description': 'Mercury Inferior Conjunction July 2014'},
-            {'name': 'mercury_2014_11', 'date': pd.to_datetime('2014-11-01'), 'description': 'Mercury Inferior Conjunction November 2014'},
-            # 2015
-            {'name': 'mercury_2015_02', 'date': pd.to_datetime('2015-02-21'), 'description': 'Mercury Inferior Conjunction February 2015'},
-            {'name': 'mercury_2015_06', 'date': pd.to_datetime('2015-06-24'), 'description': 'Mercury Inferior Conjunction June 2015'},
-            {'name': 'mercury_2015_10', 'date': pd.to_datetime('2015-10-16'), 'description': 'Mercury Inferior Conjunction October 2015'},
-            # 2016
-            {'name': 'mercury_2016_02', 'date': pd.to_datetime('2016-02-07'), 'description': 'Mercury Inferior Conjunction February 2016'},
-            {'name': 'mercury_2016_06', 'date': pd.to_datetime('2016-06-05'), 'description': 'Mercury Inferior Conjunction June 2016'},
-            {'name': 'mercury_2016_09', 'date': pd.to_datetime('2016-09-28'), 'description': 'Mercury Inferior Conjunction September 2016'},
-            # 2017
-            {'name': 'mercury_2017_01', 'date': pd.to_datetime('2017-01-19'), 'description': 'Mercury Inferior Conjunction January 2017'},
-            {'name': 'mercury_2017_05', 'date': pd.to_datetime('2017-05-18'), 'description': 'Mercury Inferior Conjunction May 2017'},
-            {'name': 'mercury_2017_09', 'date': pd.to_datetime('2017-09-12'), 'description': 'Mercury Inferior Conjunction September 2017'},
-            # 2018
-            {'name': 'mercury_2018_01', 'date': pd.to_datetime('2018-01-01'), 'description': 'Mercury Inferior Conjunction January 2018'},
-            {'name': 'mercury_2018_04', 'date': pd.to_datetime('2018-04-30'), 'description': 'Mercury Inferior Conjunction April 2018'},
-            {'name': 'mercury_2018_08', 'date': pd.to_datetime('2018-08-26'), 'description': 'Mercury Inferior Conjunction August 2018'},
-            {'name': 'mercury_2018_12', 'date': pd.to_datetime('2018-12-15'), 'description': 'Mercury Inferior Conjunction December 2018'},
-            # 2019
-            {'name': 'mercury_2019_04', 'date': pd.to_datetime('2019-04-11'), 'description': 'Mercury Inferior Conjunction April 2019'},
-            {'name': 'mercury_2019_08', 'date': pd.to_datetime('2019-08-09'), 'description': 'Mercury Inferior Conjunction August 2019'},
-            {'name': 'mercury_2019_11', 'date': pd.to_datetime('2019-11-28'), 'description': 'Mercury Inferior Conjunction November 2019'},
-            # 2020
-            {'name': 'mercury_2020_03', 'date': pd.to_datetime('2020-03-24'), 'description': 'Mercury Inferior Conjunction March 2020'},
-            {'name': 'mercury_2020_07', 'date': pd.to_datetime('2020-07-22'), 'description': 'Mercury Inferior Conjunction July 2020'},
-            {'name': 'mercury_2020_11', 'date': pd.to_datetime('2020-11-10'), 'description': 'Mercury Inferior Conjunction November 2020'},
-            # 2021
-            {'name': 'mercury_2021_03', 'date': pd.to_datetime('2021-03-06'), 'description': 'Mercury Inferior Conjunction March 2021'},
-            {'name': 'mercury_2021_07', 'date': pd.to_datetime('2021-07-04'), 'description': 'Mercury Inferior Conjunction July 2021'},
-            {'name': 'mercury_2021_10', 'date': pd.to_datetime('2021-10-25'), 'description': 'Mercury Inferior Conjunction October 2021'},
-            # 2022
-            {'name': 'mercury_2022_02', 'date': pd.to_datetime('2022-02-16'), 'description': 'Mercury Inferior Conjunction February 2022'},
-            {'name': 'mercury_2022_06', 'date': pd.to_datetime('2022-06-16'), 'description': 'Mercury Inferior Conjunction June 2022'},
-            {'name': 'mercury_2022_10', 'date': pd.to_datetime('2022-10-08'), 'description': 'Mercury Inferior Conjunction October 2022'},
-            # 2023
-            {'name': 'mercury_2023_01', 'date': pd.to_datetime('2023-01-30'), 'description': 'Mercury Inferior Conjunction January 2023'},
-            {'name': 'mercury_2023_05', 'date': pd.to_datetime('2023-05-29'), 'description': 'Mercury Inferior Conjunction May 2023'},
-            {'name': 'mercury_2023_09', 'date': pd.to_datetime('2023-09-22'), 'description': 'Mercury Inferior Conjunction September 2023'},
-            # 2024
-            {'name': 'mercury_2024_01', 'date': pd.to_datetime('2024-01-12'), 'description': 'Mercury Inferior Conjunction January 2024'},
-            {'name': 'mercury_2024_05', 'date': pd.to_datetime('2024-05-09'), 'description': 'Mercury Inferior Conjunction May 2024'},
-            {'name': 'mercury_2024_09', 'date': pd.to_datetime('2024-09-05'), 'description': 'Mercury Inferior Conjunction September 2024'},
-            {'name': 'mercury_2024_12', 'date': pd.to_datetime('2024-12-25'), 'description': 'Mercury Inferior Conjunction December 2024'},
-            # 2025
-    
-    Major Lunar Standstills occur every 18.6 years when the Moon reaches its 
     
     Major Lunar Standstills occur every 18.6 years when the Moon reaches its 
     maximum declination (±28.7°), creating enhanced tidal effects that should 

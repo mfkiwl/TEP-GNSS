@@ -4,7 +4,7 @@
 **Version:** v0.16 (Cairo)  
 **Date:** First published: 3 November 2025 · Last updated: 30 November 2025  
 **DOI:** 10.5281/zenodo.17517141  
-**Generated:** 2025-11-30  
+**Generated:** 2025-12-17  
 
 ---
 
@@ -17,8 +17,6 @@ Seven independent signatures are identified: (1) Spatial anisotropy persists wit
 Observed patterns are compatible with key a priori TEP predictions: correlation length λ=1,000-10,000 km (observed: 4,201±1,967 km), exponential models remain competitive with the best spatial kernel (exponential ΔAIC=12.8 relative to the Gaussian) and strongly outperform simple power-law forms (power-law ΔAIC > 30), velocity-dependent anisotropy (r=-0.888), and geometric alignment (EW/NS=2.16). The absence of GM/r² scaling is physically consistent with the hypothesis that energetic couplings are filtered by processing while geometric information is transmitted; raw carrier-phase analysis will test this transmission mechanism. Raw data validation and multi-constellation replication represent critical next steps.
 
 †Smawfield, M. L. (2025). Global Time Echoes: Distance-Structured Correlations in GNSS Clocks. Zenodo. https://doi.org/10.5281/zenodo.17127229
-
-## Executive Summary
 
 ### Executive Summary
 
@@ -2895,8 +2893,6 @@ Verification of CMB frame alignment across three independent grid resolutions to
     **Computational Cost vs. Benefit:** While 1° resolution requires 24× longer processing than 5° (65,341 vs 2,701 grid points), it yields only 0.4% total correlation improvement (0.744 → 0.747), confirming 5° captures 99.6% of achievable correlation and represents optimal precision-efficiency balance for routine analysis. The 1° ultra-high resolution verification is used for final publication figures to demonstrate absolute thoroughness.
 
 **Reproducibility Statement:** This pipeline provides complete reproducibility for the 25-year long-baseline analysis presented in this manuscript. All code, data processing steps, validation procedures, and analysis parameters are fully documented and version-controlled. The analysis builds upon the validated methodology from the multi-center study while extending temporal coverage to enable investigation of decadal stability and long-period geophysical phenomena.
-
-## References & Contact
 
 ## References
 

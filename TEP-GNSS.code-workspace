@@ -4,9 +4,6 @@
 			"path": "."
 		},
 		{
-			"path": "../TEP-GNSS-MGEX"
-		},
-		{
 			"path": "../TEP-GNSS-RINEX"
 		}
 	],

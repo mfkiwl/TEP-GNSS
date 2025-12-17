@@ -1,13 +1,12 @@
-# robots.txt for TEP-GNSS: Global Time Echoes
+# robots.txt for TEP-GNSS CODE Longspan: 25-Year Analysis
 User-agent: *
 Allow: /
 
-# Sitemap location
+# Sitemap location (points to main site sitemap which includes this subfolder)
 Sitemap: https://matthewsmawfield.github.io/TEP-GNSS/sitemap.xml
 
 # Disallow access to hidden directories and files
 Disallow: /.*
-Disallow: /*/$
 
 # Allow all files with these extensions
 Allow: /*.css$
@@ -18,5 +17,6 @@ Allow: /*.png$
 Allow: /*.gif$
 Allow: /*.svg$
 Allow: /*.webp$
+Allow: /*.pdf$
 
 # Crawl-delay: 10  # Uncomment if needed to limit crawl rate

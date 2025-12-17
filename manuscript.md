@@ -4,7 +4,7 @@
 **Version:** v0.23 (Jaipur)  
 **Date:** First published: 17 September 2025 · Last updated: 23 November 2025  
 **DOI:** 10.5281/zenodo.17127229  
-**Generated:** 2025-11-24  
+**Generated:** 2025-12-17  
 
 ---
 
@@ -3287,8 +3287,6 @@ Command: `python scripts/steps/step_4_advanced_analysis_and_visualization/step_4
     **Scientific interpretation:** These failures represent the inherent mathematical limitations of nonlinear optimization when applied to resampled data with reduced statistical power, not fundamental flaws in the methodology.
 
             **Methodology Note:** Bootstrap convergence analysis conducted using enhanced diagnostic framework (Step 3.7) with 2,000 test iterations per analysis center, multiple initialization strategies, and comprehensive bias validation across all TEP correlation parameters.
-
-## References & Contact
 
 ## References
 

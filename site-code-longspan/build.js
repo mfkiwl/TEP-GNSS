@@ -31,18 +31,18 @@ async function buildStaticSite() {
                 
                 // Wrap component in section container (matching the dynamic loader)
                 componentsHtml += `
-                <div id="${section.id}" class="manuscript-section" data-section="${section.title}">
+                <section id="${section.id}" class="manuscript-section" data-section="${section.title}">
                     ${componentHtml}
-                </div>`;
+                </section>`;
             } else {
                 console.warn(`⚠️  Component not found: ${section.file}`);
                 componentsHtml += `
-                <div id="${section.id}" class="manuscript-section" data-section="${section.title}">
+                <section id="${section.id}" class="manuscript-section" data-section="${section.title}">
                     <div style="background-color: #ffe6e6; border: 1px solid #ff9999; padding: 15px; margin: 20px 0; border-radius: 5px;">
                         <h3 style="color: #cc0000; margin-top: 0;">Missing Section: ${section.title}</h3>
                         <p>Component file <code>components/${section.file}</code> not found</p>
                     </div>
-                </div>`;
+                </section>`;
             }
         }
         
@@ -97,6 +97,17 @@ async function buildStaticSite() {
         
         // Copy manifest.json for reference
         fs.copyFileSync(manifestPath, path.join(distDir, 'manifest.json'));
+        
+        // Copy robots.txt to dist root
+        const rootFiles = ['robots.txt'];
+        for (const file of rootFiles) {
+            const src = path.join(__dirname, 'public', file);
+            const dest = path.join(distDir, file);
+            if (fs.existsSync(src)) {
+                fs.copyFileSync(src, dest);
+                console.log(`📁 Copied ${file} to dist root`);
+            }
+        }
         
         // Generate markdown version
         console.log('📝 Generating markdown version...');
